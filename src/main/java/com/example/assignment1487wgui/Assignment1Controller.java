@@ -71,7 +71,7 @@ public class Assignment1Controller implements Initializable {
     private String url = "jdbc:mysql://localhost:3306/sunlab_database";
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         actionId.setCellValueFactory(new PropertyValueFactory<EntryRecord, Integer>("actionId"));
         psuId.setCellValueFactory(new PropertyValueFactory<EntryRecord, Integer>("psuId"));
         role.setCellValueFactory(new PropertyValueFactory<EntryRecord, String>("role"));
@@ -84,7 +84,7 @@ public class Assignment1Controller implements Initializable {
         setUser(username.getText());
         setPass(password.getText());   // not secure
 
-        try (Connection conn = DriverManager.getConnection(getUrl(),getUser(),getPass())) {
+        try (Connection conn = DriverManager.getConnection(getUrl(), getUser(), getPass())) {
             loginNotification.setText("Connected to database!");
             setSuccessfulLogin(true);
             Statement state = conn.createStatement();
@@ -96,34 +96,33 @@ public class Assignment1Controller implements Initializable {
 
     @FXML
     protected void onFilterButtonClick(ActionEvent event) throws Exception {
-        if(successfulLogin){
-            try(Connection conn = DriverManager.getConnection(getUrl(),getUser(),getPass())) {
+        if (successfulLogin) {
+            try (Connection conn = DriverManager.getConnection(getUrl(), getUser(), getPass())) {
                 Statement state = conn.createStatement();
                 String query = "select * from sunlab_entry_records";
+                String filterQuery = "";
                 boolean multipleFilters = false;
-
-                if (psuIdFilter.getText() != null || !psuIdFilter.getText().trim().isEmpty()) {
-                    query = query + " where ";
-                }
 
                 if (psuIdFilter.getText().length() == 9) {
                     String psuId = psuIdFilter.getText();
-                    query = query + "id = " + psuId;
+                    filterQuery = filterQuery + " id = " + psuId;
                     multipleFilters = true;
                 }
 
-//            if (entryTimeFilter.getText() != null) {
-//                String entryTime = entryTimeFilter.getText();
-//                query = query + "and entry_time = " + entryTime;
-//            }
-//
-//            if (departureTimeFilter.getText() != null) {
-//                String departureTime = departureTimeFilter.getText();
-//                query = query + "and departure_time = " + departureTime;
-//            }
+                if (entryTimeFilter.getText().length() == 19 && departureTimeFilter.getText().length() == 19) {
+                    if (multipleFilters) {
+                        filterQuery += " and ";
+                    }
+                    String entryTime = entryTimeFilter.getText();
+                    String departureTime = departureTimeFilter.getText();
 
-                query += ";";
-                System.out.println(query);
+                    filterQuery = filterQuery + " (entry_time between '" + entryTime + "' and '" + departureTime + "'"
+                            + "or departure_time between '" + entryTime + "' and '" + departureTime + "')";
+                }
+
+                if (filterQuery.length() > 1) {
+                    query = query + " where " + filterQuery + ";";
+                }
                 ResultSet resultSet = state.executeQuery(query);
                 ObservableList<EntryRecord> list = FXCollections.observableArrayList();
                 while (resultSet.next()) {
@@ -139,8 +138,7 @@ public class Assignment1Controller implements Initializable {
 
                 tableView.setItems(list);
             }
-        }
-        else{
+        } else {
             loginNotification.setText("Error: Not logged in to database!");
         }
 
@@ -171,12 +169,11 @@ public class Assignment1Controller implements Initializable {
                     state.executeUpdate(query);
                     loginNotification.setText("Successfully Entered SUNLabs!");
 
-                } catch (SQLException se){
+                } catch (SQLException se) {
                     loginNotification.setText("Error: PSU ID not allowed in SUNLabs (not in database)!");
                 }
             }
-        }
-        else {
+        } else {
             loginNotification.setText("Error: Must be logged into database to scan IDs to database");
         }
     }

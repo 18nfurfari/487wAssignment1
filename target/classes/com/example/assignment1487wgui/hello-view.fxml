@@ -44,8 +44,8 @@
       <AnchorPane prefHeight="66.0" prefWidth="680.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="psuIdFilter" layoutX="54.0" layoutY="38.0" prefHeight="25.0" prefWidth="161.0" promptText="PSU ID" />
-            <TextField layoutX="215.0" layoutY="38.0" prefHeight="25.0" prefWidth="175.0" promptText="ENTRY TIME" />
-            <TextField layoutX="390.0" layoutY="38.0" prefHeight="25.0" prefWidth="175.0" promptText="DEPARTURE TIME" />
+            <TextField fx:id="entryTimeFilter" layoutX="215.0" layoutY="38.0" prefHeight="25.0" prefWidth="175.0" promptText="ENTRY TIME" />
+            <TextField fx:id="departureTimeFilter" layoutX="390.0" layoutY="38.0" prefHeight="25.0" prefWidth="175.0" promptText="DEPARTURE TIME" />
             <Button fx:id="filterButton" layoutX="596.0" layoutY="38.0" mnemonicParsing="false" onAction="#onFilterButtonClick" prefHeight="25.0" prefWidth="70.0" text="Filter" />
             <Label fx:id="loginNotification" layoutX="4.0" layoutY="2.0" prefHeight="25.0" prefWidth="672.0" text="Must sign in to database to scan ID">
                <font>
