@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assignment1487wgui.Assignment1Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #90CAF9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assignment1487wgui.Assignment1Controller">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -21,16 +21,16 @@
             <Label layoutX="5.0" layoutY="2.0" prefHeight="25.0" prefWidth="80.0" text="DB Username" />
             <Label layoutX="296.0" layoutY="2.0" prefHeight="25.0" prefWidth="80.0" text="DB Password" />
             <PasswordField fx:id="password" layoutX="376.0" layoutY="2.0" prefHeight="25.0" prefWidth="200.0" promptText="Password" />
-            <Button fx:id="loginButton" layoutX="596.0" layoutY="2.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="70.0" text="Login" />
+            <Button fx:id="loginButton" layoutX="596.0" layoutY="2.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: blue;" text="Login" textFill="WHITE" />
             <TextField fx:id="username" layoutX="85.0" layoutY="2.0" prefHeight="25.0" prefWidth="200.0" promptText="Username" />
             <Label layoutX="5.0" layoutY="50.0" prefHeight="25.0" prefWidth="80.0" text="Scan PSU ID" />
-            <Button fx:id="scanButton" layoutX="596.0" layoutY="50.0" mnemonicParsing="false" onAction="#onScanButtonClick" prefHeight="25.0" prefWidth="70.0" text="Scan ID" />
+            <Button fx:id="scanButton" layoutX="596.0" layoutY="50.0" mnemonicParsing="false" onAction="#onScanButtonClick" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: blue;" text="Scan ID" textFill="WHITE" />
             <TextField fx:id="scanTextField" layoutX="86.0" layoutY="50.0" prefHeight="25.0" prefWidth="491.0" promptText="PSU ID" />
          </children>
       </AnchorPane>
    </top>
    <bottom>
-      <TableView fx:id="tableView" prefHeight="324.0" prefWidth="660.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="324.0" prefWidth="660.0" style="-fx-background-color: lightgray;" BorderPane.alignment="CENTER">
         <columns>
             <TableColumn fx:id="actionId" prefWidth="54.0" text="ID" />
           <TableColumn fx:id="psuId" prefWidth="161.0" text="PSU_ID" />
@@ -46,7 +46,7 @@
             <TextField fx:id="psuIdFilter" layoutX="54.0" layoutY="38.0" prefHeight="25.0" prefWidth="161.0" promptText="PSU ID" />
             <TextField fx:id="entryTimeFilter" layoutX="215.0" layoutY="38.0" prefHeight="25.0" prefWidth="175.0" promptText="ENTRY TIME" />
             <TextField fx:id="departureTimeFilter" layoutX="390.0" layoutY="38.0" prefHeight="25.0" prefWidth="175.0" promptText="DEPARTURE TIME" />
-            <Button fx:id="filterButton" layoutX="596.0" layoutY="38.0" mnemonicParsing="false" onAction="#onFilterButtonClick" prefHeight="25.0" prefWidth="70.0" text="Filter" />
+            <Button fx:id="filterButton" layoutX="596.0" layoutY="38.0" mnemonicParsing="false" onAction="#onFilterButtonClick" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: blue;" text="Filter" textFill="WHITE" />
             <Label fx:id="loginNotification" layoutX="4.0" layoutY="2.0" prefHeight="25.0" prefWidth="672.0" text="Must sign in to database to scan ID">
                <font>
                   <Font size="14.0" />
